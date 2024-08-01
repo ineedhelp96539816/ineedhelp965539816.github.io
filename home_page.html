@@ -3,92 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join a Game Button</title>
+    <title>Ask for User's Name</title>
     <style>
         body {
-            background-color: #fffad4; /* Background color for the page */
-            margin: 0; /* Remove default margin */
-            font-family: Arial, sans-serif; /* Set a default font */
-        }
-
-        .header {
-            background-color: #4CAF50; /* Header background color */
-            color: white; /* Header text color */
-            padding: 20px; /* Padding inside the header */
-            text-align: center; /* Center the text */
-            font-size: 24px; /* Font size for the header text */
-            width: 100%; /* Full width */
-            box-sizing: border-box; /* Include padding and border in element's total width and height */
-        }
-
-        .button {
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            background-color: #4CAF50; /* Button background color */
-        }
-
-        .button-container {
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 160px); /* Full viewport height minus the header and rotating box height */
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
         }
-
-        .rotating-box {
-            background-color: #ff6347; /* Rotating box background color */
-            color: white; /* Rotating box text color */
+        .container {
+            text-align: center;
+            background-color: #fff;
             padding: 20px;
-            text-align: center;
-            font-size: 20px;
-            margin: 20px auto;
-            width: fit-content;
-            animation: rotate 3s infinite linear;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .input-box {
-            margin: 20px;
-            text-align: center;
-        }
-
-        .input-box input {
+        input[type="text"] {
             padding: 10px;
             font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 300px;
         }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        Draw Battle from Ohio
-    </div>
-    <div class="rotating-box">
-        I need help
-    </div>
-    <div class="button-container">
-        <form action="https://formspree.io/forms/xnnadbqr" method="POST">
-            <div class="input-box">
-                <label for="name">Enter your name:</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
-            </div>
-            <button class="button" type="submit">Submit</button>
+    <div class="container">
+        <h1>What is your name?</h1>
+        <form id="nameForm">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <br><br>
+            <button type="submit">Submit</button>
         </form>
-        <button class="button" onclick="window.location.href='https://www.youtube.com'">Join a Game</button>
     </div>
+
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the value entered in the input field
+            const name = document.getElementById('name').value;
+
+            // Display the entered name in an alert
+            alert('Hello, ' + name + '!');
+        });
+    </script>
 </body>
 </html>
