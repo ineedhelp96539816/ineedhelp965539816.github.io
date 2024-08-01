@@ -51,7 +51,7 @@
             margin: 20px auto;
             width: fit-content;
             animation: rotate 3s infinite linear;
-        }	
+        }
 
         .input-box {
             margin: 20px;
@@ -81,7 +81,7 @@
         I need help
     </div>
     <div class="button-container">
-        <form id="nameForm">
+        <form action="https://formspree.io/f/your-form-id" method="POST">
             <div class="input-box">
                 <label for="name">Enter your name:</label>
                 <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -90,27 +90,5 @@
         </form>
         <button class="button" onclick="window.location.href='https://www.youtube.com'">Join a Game</button>
     </div>
-    <script>
-        document.getElementById('nameForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const name = document.getElementById('name').value;
-
-            fetch('https://your-backend-service-url/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: name }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Form submitted successfully!');
-            })
-            .catch((error) => {
-                alert('Error submitting form.');
-            });
-        });
-    </script>
 </body>
 </html>
