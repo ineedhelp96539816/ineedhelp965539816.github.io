@@ -3,44 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>draw battle from ohio</title>
+    <title>Join a Game Button</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            width: 100%;
-            max-width: 300px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
         body {
             background-color: #fffad4; /* Background color for the page */
             margin: 0; /* Remove default margin */
@@ -77,29 +41,96 @@
             align-items: center;
             height: calc(100vh - 160px); /* Full viewport height minus the header and rotating box height */
         }
+
+        .rotating-box {
+            background-color: #ff6347; /* Rotating box background color */
+            color: white; /* Rotating box text color */
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            margin: 20px auto;
+            width: fit-content;
+            animation: rotate 3s infinite linear;
+        }
+
+        .input-box {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .input-box input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #userList {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>What is your name?</h1>
+    <div class="header">
+        Draw Battle from Ohio
+    </div>
+    <div class="rotating-box">
+        I need help
+    </div>
+    <div class="button-container">
         <form id="nameForm">
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            <br><br>
-            <button type="submit">Submit</button>
+            <div class="input-box">
+                <label for="name">Enter your name:</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <button class="button" type="submit">Submit</button>
         </form>
+        <button class="button" onclick="window.location.href='https://www.youtube.com'">Join a Game</button>
+        <div id="userList">
+            <h2>Online Users</h2>
+            <ul id="users"></ul>
+        </div>
     </div>
 
     <script>
         document.getElementById('nameForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            // Get the value entered in the input field
             const name = document.getElementById('name').value;
-
-            // Display the entered name in an alert
-            alert('Hello, ' + name + '!');
+            fetch('https://your-backend-service-url/submit', { // Replace with your backend URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'name': name
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the user list
+                const userList = document.getElementById('users');
+                userList.innerHTML = ''; // Clear the list before updating
+                data.users.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = user;
+                    userList.appendChild(li);
+                });
+                // Clear the input field
+                document.getElementById('name').value = '';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         });
-   
     </script>
 </body>
 </html>
