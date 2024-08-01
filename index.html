@@ -77,36 +77,6 @@
             align-items: center;
             height: calc(100vh - 160px); /* Full viewport height minus the header and rotating box height */
         }
-
-        .rotating-box {
-            background-color: #ff6347; /* Rotating box background color */
-            color: white; /* Rotating box text color */
-            padding: 20px;
-            text-align: center;
-            font-size: 20px;
-            margin: 20px auto;
-            width: fit-content;
-            animation: rotate 3s infinite linear;
-        }
-
-        .input-box {
-            margin: 20px;
-            text-align: center;
-        }
-
-        .input-box input {
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
     </style>
 </head>
 <body>
@@ -129,14 +99,6 @@
             // Display the entered name in an alert
             alert('Hello, ' + name + '!');
         });
-<div class="header">
-        Draw Battle from Ohio
-    </div>
-    <div class="rotating-box">
-        I need help
-    </div>
-    <div class="button-container">
-        <button class="button" onclick="window.location.href='https://www.youtube.com'">Join a Game</button>
    
     </script>
 </body>
